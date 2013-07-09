@@ -1,8 +1,20 @@
 ###############################################################################
+# -->Makefile<--
+###############################################################################
+
+###############################################################################
 #
-# Programmer :  George Mausshardt
-# Makefile
+# Programmer :  Rob Wiehage
+# Assignment :  Program 4
 #
+# Instructor :  Dr. Michael Hilgers
+# Course     :  CS236 Winter 2001
+# Semester   :  Fall 2001
+#
+###############################################################################
+
+###############################################################################
+# This makefile will build an executable for the assignment.
 ###############################################################################
 
 .PHONY: all clean
@@ -53,3 +65,7 @@ depend: $(SOURCES) $(HEADERS)
 
 
 -include depend
+# Put a dash in front of include when using gnu make.
+# It stops gmake from warning us that the file
+# doesn't exist yet, even though it will be properly
+# made and included when all is said and done.

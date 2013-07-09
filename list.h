@@ -95,7 +95,7 @@ class List
         List in the same program.  All aspects of the 
         new List will be equal to the copied version.
     */
-//    void copy(const List<T>& right_hand_side);
+    void copy(const List<T>& right_hand_side);
 
     /*
       OPERATOR: T& operator[](nsize const data_location)
