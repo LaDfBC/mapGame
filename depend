@@ -1,0 +1,1 @@
+main.o: main.cpp list.h templates.h list_node.h list.hpp
