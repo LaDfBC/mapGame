@@ -27,32 +27,44 @@ List<T>::List(T const input_value)
 }
 
 template <class T>
+List<T>::List(const List<T>& input_list)
+{
+	copy(input_list);
+}
+
+template <class T>
 List<T>::~List()
 {
-	if (m_size == 0)
-	{
-		return;
-	}
-	
-	else if (m_size == 1)
-	{
-		delete m_root;
-		m_size = 0;
-		return;
-	}
-		
-	else
-	{
-		clear();
-	}
+	clear();
 }
 
 
 template <class T>
 void List<T>::copy(const List<T>& right_hand_side)
 {
-	//if rhs == this...returns
+	if ((*this) == right_hand_side)
+	{
+		return;
+	}
 	clear();
+	cout << "A" << endl;
+	if (right_hand_side.size() != 0)
+	{
+		ListNode<T>* temp = right_hand_side.getNode(0);
+		cout << right_hand_side.size() << endl;
+		while (temp != NULL)
+		{
+			if (temp -> node_data == NULL)
+			{
+				cout << "What?" << endl;
+			}
+			cout << "B" << endl;
+			cout << "Data:" << *(temp -> node_data) << endl;
+			append(*(temp -> node_data));
+			cout << *(temp -> node_data) << endl;
+			temp = temp -> n;
+		}
+	}
 	
 	return;
 }
@@ -61,7 +73,7 @@ void List<T>::copy(const List<T>& right_hand_side)
 template <class T>
 List<T>& List<T>::operator=(const List<T>& right_hand_side)
 {
-	copy();
+	copy(right_hand_side);
 	return *this;
 }
 
@@ -103,50 +115,72 @@ template <class T>
 ListNode<T>* List<T>::getNode(nsize const data_location) const
 {
 	if (data_location >= m_size)
-		{
-			//throw out_of-range error.
-		}
+	{
+		//throw out_of-range error.
+	}
 		
-		ListNode<T>* temp_node = m_root;
-		for(long i = 0; i < data_location; i++)
-		{
-			temp_node = temp_node -> n; 
-		}
+	ListNode<T>* temp_node = m_root;
+	for(long i = 0; i < data_location; i++)
+	{
+		temp_node = temp_node -> n; 
+	}
 		
-		return temp_node;
+	return temp_node;
 }
 
-//template <class T>
-//bool List<T>::operator!=(const List<T>& right_hand_side) const
-//{
-//	return !(*this == right_hand_side);
-//}
-//
-//template <class T>
-//bool List<T>::operator==(const List<T>& right_hand_side) const
-//{
-//	if (m_size != right_hand_side.m_size)
-//		return false;
-//	
-//	else
-//	{
-//		//Ready for some fun tomorrow?
-//	}
-//	return true;
-//}
+template <class T>
+bool List<T>::operator!=(const List<T>& right_hand_side) const
+{
+	return !(*this == right_hand_side);
+}
+
+template <class T>
+bool List<T>::operator==(const List<T>& right_hand_side) const
+{
+	if (m_size != right_hand_side.m_size)
+		return false;
+	
+	else
+	{
+		ListNode<T>* temp = m_root;
+		ListNode<T>* rhs_temp = right_hand_side.getNode(0);
+		while(temp != NULL)
+		{
+			if (*(temp -> node_data) != *(rhs_temp -> node_data))
+			{
+				return false;
+			}
+			temp = temp -> n;
+			rhs_temp = rhs_temp -> n;
+		}
+	}
+	return true;
+}
 
 template <class T>
 void List<T>::append(nsize inputData)
 {
-	ListNode<T>* lastNode = getNode(m_size - 1);
-	lastNode -> n = new ListNode<T>;
-	
-	lastNode -> n -> node_data = new T(inputData);
-	
-	lastNode -> n -> p = lastNode;
-	lastNode -> n -> n = NULL;
-	
-	m_size++;
+	if (m_size == 0)
+	{
+		m_root = new ListNode<T>;
+		m_root -> p = NULL;
+		m_root -> n = NULL;
+		
+		m_root -> node_data = new T(inputData);
+			
+		m_size = 1;
+	}
+	else
+	{
+		ListNode<T>* lastNode = getNode(m_size - 1);
+		lastNode -> n = new ListNode<T>;
+		
+		lastNode -> n -> node_data = new T(inputData);
+		lastNode -> n -> p = lastNode;
+		lastNode -> n -> n = NULL;
+		
+		m_size++;
+	}
 	return;
 }
 
@@ -182,6 +216,25 @@ void List<T>::removeAtIndex(nsize inputIndex)
 			return;
 		}
 	}
+}
+
+template <class T>
+ostream& operator<<(ostream& out, const List<T>& calling_List)
+{
+	out << "[";
+	ListNode<T>* tempNode = calling_List.getNode(0);
+	while(tempNode -> n != NULL)
+	{
+		out << *(tempNode -> node_data);
+		out << ", ";
+		tempNode = tempNode -> n;
+	}
+	if(tempNode != NULL)
+	{
+		out << *(tempNode -> node_data);
+	}
+	out << "]";
+	return out;
 }
 
 template <class T>

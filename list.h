@@ -71,7 +71,7 @@ class List
         List that already exists in a program.  All aspects of the 
         new List will be equal to the copied version.
     */
-    List(const List<T>& right_hand_side);
+    List(const List<T>& input_list);
 
     /*
       DESTRUCTOR: ~List()
@@ -139,83 +139,69 @@ class List
         right_hand_side.
     */
     List<T>& operator=(const List<T>& right_hand_side);
-//          
-//    /*
-//      OPERATOR: bool operator==(const List<T>& right_hand_side) const
-//        Input: const List<T>& right_hand_side - the List to
-//          compare to the List stored in this class
-//        Output: True if the two Lists are replicas of each other.
-//          False otherwise.
-//      PRE: Comparisons between each individual element are executed. Do not
-//        call this function unless the elements in this List are scalar
-//        or have their equal operator (==) defined!
-//      POST: Returns true or false as defined above. No side effects.
-//      PURPOSE: Equality operator - Tests if two Lists are the same
-//    */
-//    bool operator==(const List<T>& right_hand_side) const;
-//      
-//    /*
-//      OPERATOR: bool operator!=(const List<T>& right_hand_side) const
-//        Input: const List<T>& right_hand_side - the List to
-//          compare to this List
-//        Output: True if the two Lists are NOT replicas of each other.
-//          False if they are exactly the same.
-//      PRE: Comparisons between each individual element are executed. Note that 
-//           this function invokes the == operator on individual elements, but
-//           does NOT invoke the != operator on individual elements.  Therefore,
-//           do not  call this function unless the elements in this List 
-//           are scalar or have their equal operator (==) defined!
-//      POST: Returns true or false as defined above. No side effects.
-//      PURPOSE: Equality operator - Tests if two Lists are different
-//    */
-//    bool operator!=(const List<T>& right_hand_side) const;
-//
-//    /*
-//      OPERATOR: ostream& operator<<(ostream& out, 
-//                                const List<U>& calling_List);
-//        Input: ostream& out - the stream used to display information about
-//          the List to the screen
-//               const List<U> calling_List - the List
-//          to be displayed to the screen in proper format
-//        Output: Functions like a cout statement.  The List is output
-//          to the screen in the format [e1, e2, e3 ... ek]
-//      PRE: Note that this function attempts to output each element in turn.
-//        Ensure that complex or programmer-defined objects have an output 
-//        operator defined!
-//      POST: Outputs the List to the screen in the foramt defined
-//        above. 
-//      PURPOSE: Allow "cout << List" to function correctly. Called
-//        when the List must be output.
-//    */
-//    template <class U>
-//    friend ostream& operator<<(ostream& out, 
-//                               const List<U>& calling_List);
-//   
-//    /*
-//      OPERATOR: istream& operator>>(istream& in, 
-//                                const List<U>& calling_List);
-//        Input: istream& in - the input stream from which to read information
-//          about the List
-//               const List<U>& calling_List - the 
-//          List to be built from the input on the command line
-//        Output: Functions like a cin statement.  The List is read in
-//          from numbers entered at the command line
-//      PRE: Note that this function attempts to input each element in turn.
-//        Ensure that complex or programmer-defined objects have an input
-//        operator defined!
-//      POST: Builds the List from user-defined input
-//      PURPOSE: Allow "cin >> List" to function correctly.  Called
-//        when a List must be read in from user-defined values.
-//    */
-//    template <class U>
-//    friend istream& operator>>(istream& in, 
-//                               const List<U>& calling_List);
-//
+          
+    /*
+      OPERATOR: bool operator==(const List<T>& right_hand_side) const
+        Input: const List<T>& right_hand_side - the List to
+          compare to the List stored in this class
+        Output: True if the two Lists are replicas of each other.
+          False otherwise.
+      PRE: Comparisons between each individual element are executed. Do not
+        call this function unless the elements in this List are scalar
+        or have their equal operator (==) defined!
+      POST: Returns true or false as defined above. No side effects.
+      PURPOSE: Equality operator - Tests if two Lists are the same
+    */
+    bool operator==(const List<T>& right_hand_side) const;
+      
+    /*
+      OPERATOR: bool operator!=(const List<T>& right_hand_side) const
+        Input: const List<T>& right_hand_side - the List to
+          compare to this List
+        Output: True if the two Lists are NOT replicas of each other.
+          False if they are exactly the same.
+      PRE: Comparisons between each individual element are executed. Note that 
+           this function invokes the == operator on individual elements, but
+           does NOT invoke the != operator on individual elements.  Therefore,
+           do not  call this function unless the elements in this List 
+           are scalar or have their equal operator (==) defined!
+      POST: Returns true or false as defined above. No side effects.
+      PURPOSE: Equality operator - Tests if two Lists are different
+    */
+    bool operator!=(const List<T>& right_hand_side) const;
+
+    /*
+      OPERATOR: ostream& operator<<(ostream& out, 
+                                const List<U>& calling_List);
+        Input: ostream& out - the stream used to display information about
+          the List to the screen
+               const List<U> calling_List - the List
+          to be displayed to the screen in proper format
+        Output: Functions like a cout statement.  The List is output
+          to the screen in the format [e1, e2, e3 ... ek]
+      PRE: Note that this function attempts to output each element in turn.
+        Ensure that complex or programmer-defined objects have an output 
+        operator defined!
+      POST: Outputs the List to the screen in the foramt defined
+        above. 
+      PURPOSE: Allow "cout << List" to function correctly. Called
+        when the List must be output.
+    */
+    template <class U>
+    friend ostream& operator<<(ostream& out, 
+                               const List<U>& calling_List);
+
       void clear();
       
       void append(nsize inputData);
       
       void removeAtIndex(nsize inputIndex);
+      
+      /* TO DO: 
+       * --removeByValue
+       * --addAtLocation
+       * --sort
+       * 
     
       /* 
       	FUNCTION: nsize size() const
