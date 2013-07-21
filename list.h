@@ -191,19 +191,28 @@ class List
     friend ostream& operator<<(ostream& out, 
                                const List<U>& calling_List);
 
-      void clear();
+    /*
+     * CLEAR: Does the obvious.
+     */
+    void clear();
       
-      void append(nsize inputData);
-      
-      void removeAtIndex(nsize inputIndex);
-      
-      /* TO DO: 
-       * --removeByValue
-       * --addAtLocation
-       * --sort
-       * 
+    /*
+     * APPEND: Adds inputData to the end of the list
+     */
+    void append(T inputData);
     
-      /* 
+    /*
+     * INSERT: Puts inputData AT index. The number currently at that
+     * index is shifted back by one.
+     */
+    void insert(T inputData, nsize index);
+
+    /*
+     * REMOVEATINDEX: Yanks the number at inputIndex out complete
+     */
+    void removeAtIndex(nsize inputIndex);
+    
+    /*
       	FUNCTION: nsize size() const
         	Output: Finds and returns m_size, the number of elements in this vector
       	PRE: None
@@ -212,7 +221,7 @@ class List
       	PURPOSE: Serve as the accessor for the variabale m_size. Commonly
         	used in for-loops to determine the length of the List
        */
-      nsize size() const;
+    nsize size() const;
 
   private:
     ListNode<T> * m_root; // A pointer to the data stored in the List

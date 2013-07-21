@@ -21,14 +21,14 @@ List<T>::List(T const input_value)
 	
 	m_root -> node_data = new T(input_value);
 	
-	cout << *(m_root -> node_data) << endl; 
-	
 	m_size = 1;
 }
 
 template <class T>
 List<T>::List(const List<T>& input_list)
 {
+	m_root = NULL;
+	m_size = 0;
 	copy(input_list);
 }
 
@@ -47,25 +47,15 @@ void List<T>::copy(const List<T>& right_hand_side)
 		return;
 	}
 	clear();
-	cout << "A" << endl;
 	if (right_hand_side.size() != 0)
 	{
-		ListNode<T>* temp = right_hand_side.getNode(0);
-		cout << right_hand_side.size() << endl;
-		while (temp != NULL)
+		for(short i = 0; i < right_hand_side.size(); i++)
 		{
-			if (temp -> node_data == NULL)
-			{
-				cout << "What?" << endl;
-			}
-			cout << "B" << endl;
-			cout << "Data:" << *(temp -> node_data) << endl;
-			append(*(temp -> node_data));
-			cout << *(temp -> node_data) << endl;
-			temp = temp -> n;
+			append(right_hand_side[i]);
 		}
 	}
 	
+	m_size == right_hand_side.size();
 	return;
 }
 
@@ -158,7 +148,7 @@ bool List<T>::operator==(const List<T>& right_hand_side) const
 }
 
 template <class T>
-void List<T>::append(nsize inputData)
+void List<T>::append(T inputData)
 {
 	if (m_size == 0)
 	{
@@ -181,18 +171,53 @@ void List<T>::append(nsize inputData)
 		
 		m_size++;
 	}
+	
 	return;
+}
+
+template <class T>
+void List<T>::insert(T inputData, nsize index)
+{
+	if (index == 0)
+	{
+		ListNode<T>* tempNode = new ListNode<T>;
+		tempNode -> p = NULL;
+		tempNode -> n = m_root;
+		tempNode -> node_data = new T(inputData);
+		m_root -> p = tempNode;
+		m_root = tempNode;
+					
+		m_size++;
+		return;
+	}
+	else
+	{
+		ListNode<T>* tempNode = getNode(index);
+		tempNode = tempNode -> p;
+		ListNode<T>* node2 = getNode(index);
+		ListNode<T>* node3 = new ListNode<T>;
+		
+		tempNode -> n = node3;
+		node3 -> p = tempNode;
+		node2 -> p = node3;
+		node3 -> n = node2;
+		node3 -> node_data = new T(inputData);
+		m_size++;
+		return;
+	}
 }
 
 
 template <class T>
 void List<T>::removeAtIndex(nsize inputIndex)
 {
+	if (inputIndex > m_size)
+		return;
 	//Deleting m_root
 	if(inputIndex == 0)
 	{
 		//Size 1
-		if (m_root -> n == NULL)
+		if (m_size == 1)
 		{
 			delete m_root -> node_data;
 			delete m_root;
@@ -215,6 +240,21 @@ void List<T>::removeAtIndex(nsize inputIndex)
 			
 			return;
 		}
+	}
+	
+	else
+	{
+		ListNode<T>* tempNode = getNode(inputIndex);
+		ListNode<T>* temp2 = tempNode -> p;
+		temp2 -> n = tempNode -> n;
+		temp2 -> n -> p = temp2;
+		tempNode -> n = NULL;
+		tempNode -> p = NULL;
+		m_size--;
+		delete tempNode -> node_data;
+		delete tempNode;
+		
+		return;
 	}
 }
 

@@ -14,16 +14,16 @@ class Graph
 {
   public:
 	  Graph();
-	  Graph(const Graph<T>& input_graph);
-	  ~Graph()
+	  Graph(const nsize input_size);
+	  ~Graph();
 	  
 	  Graph<T>& operator=(const Graph<T>& input_graph);
 	  nsize size(){ return m_size; }
-  private:
+  //private:
 	  nsize m_size;
-	  Graph_Node m_root;
+	  List<List<T> > m_data;
 	  
-	  copy(const Graph<T> input_graph);
+	  void copy(const Graph<T> input_graph);
 };
 
 #include "graph.hpp"

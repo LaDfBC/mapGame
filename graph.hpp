@@ -8,15 +8,20 @@
 template <class T>
 Graph<T>::Graph()
 {
-	size = 0;
-	m_root = null;
+	m_size = 0;
 }
 
 template <class T>
 Graph<T>::Graph(const nsize input_size)
 {
 	m_size = input_size;
-	m_root = null;
+}
+
+template <class T>
+Graph<T>::~Graph()
+{
+	m_size = 0;
+	m_data.clear();
 }
 
 template <class T>
