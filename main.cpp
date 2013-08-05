@@ -19,8 +19,6 @@ int main()
 	cout << secondList << endl;
 	myList.clear();
 	cout << "size: " << myList.size() << endl;
-	
-	_CrtDumpMemoryLeaks();
 	return 0;
 }
 
