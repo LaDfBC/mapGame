@@ -15,7 +15,7 @@ int main()
 
 	myList.insert(50, 0);
 	myList.append(23);
-	myList.removeAtIndex(2);
+	myList.removeAtIndex(3);
 	
 	Graph<short> myGraph;
 	myGraph.m_data.append(myList);
