@@ -55,7 +55,7 @@ void List<T>::copy(const List<T>& right_hand_side)
 		}
 	}
 	
-	m_size == right_hand_side.size();
+	m_size = right_hand_side.size();
 	return;
 }
 
