@@ -3,15 +3,15 @@
 //Generated on: Sunday August 25, 2013
 
 #include <iostream>
+#include "connection.h"
 
 using std::cout;
 using std::endl;
 
 
-class Vertex
+struct Vertex
 {
-  public:
-
-  private:
-
+	long ID;
+	Connection
+	//Factories, type, etc.
 };

@@ -14,14 +14,22 @@ class Graph
 {
   public:
 	  Graph();
-	  Graph(const nsize input_size);
 	  ~Graph();
 	  
 	  Graph<T>& operator=(const Graph<T>& input_graph);
 	  nsize size(){ return m_size; }
-  //private:
+
+	  template <class U>
+	  friend ostream& operator<<(ostream& out, const Graph<U>& calling_graph)
+	  {
+		  out << calling_graph.m_data << endl;
+	  }
+
+	  clear();
+
+  private:
 	  nsize m_size;
-	  List<List<T> > m_data;
+	  List<List<Connection> > m_data;
 	  
 	  void copy(const Graph<T> input_graph);
 };
