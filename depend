@@ -1,1 +1,2 @@
-main.o: main.cpp list.h templates.h list_node.h list.hpp
+main.o: main.cpp list.h templates.h list_node.h list.hpp graph.h vertex.h \
+ connection.h graph.hpp

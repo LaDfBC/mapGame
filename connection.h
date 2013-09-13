@@ -1,28 +1,24 @@
-//Programmer: George Maussahardt
-//File: vertex.h
-//Generated on: Sunday August 25, 2013
+/*Programmer: George Mausshardt
+* File: connection.h
+* Generated on: Thursday September 12, 2013
+*/
 
-#include <iostream>
-#include "templates.h"
-#include "vertex.h"
-#include <string.h>
-using std::cout;
-using std::endl;
+#ifndef CONNECTION_H
+#define CONNECTION_H
 
-struct Connection
+#include "list.h"
+#include <string>
+
+using std::string;
+
+class Connection
 {
-	Connection(long input_end_vertex, double input_weight=1.0)
-	{
-		end_vertex = input_end_vertex;
-		weight = input_weight;
-	}
-
-	long getVertex()
-	{
-		return end_vertex;
-	}
-
-	List<string> statuses;
-	double weight;
-	long end_vertex;
+  public:
+	Connection(){ weight = 1.0; }
+	  
+    float weight;
+    List<string> statuses;
+    long connecting_vertex;
 };
+
+#endif //CONNECTION_H

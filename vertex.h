@@ -1,17 +1,18 @@
-//Programmer: George Maussahardt
+//Programmer: George Mausshardt
 //File: vertex.h
-//Generated on: Sunday August 25, 2013
+//Generated on: Thursday September 12, 2013
 
-#include <iostream>
+#ifndef VERTEX_H
+#define VERTEX_H
+
 #include "connection.h"
 
-using std::cout;
-using std::endl;
 
-
-struct Vertex
+class Vertex
 {
-	long ID;
-	Connection
-	//Factories, type, etc.
+  public:
+	  long id;
+	  List<Connection> connections;
 };
+
+#endif // VERTEX_H

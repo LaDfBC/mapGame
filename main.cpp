@@ -10,7 +10,8 @@ using std::endl;
 int main()
 {	
 	Graph<short> myGraph;
-	cout << myGraph.m_data << endl;
+	myGraph.insert(0);
+	myGraph.insert(1);
+	cout << myGraph << endl;
 	return 0;
 }
-

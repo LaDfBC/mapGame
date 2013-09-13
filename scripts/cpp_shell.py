@@ -34,7 +34,7 @@ class NewCpp:
     
     def _writeFile(self):
         file = open('%s%s%s' % (self._filePath, os.sep, self._fileName), 'w')
-        file.write('//Programmer: George Maussahardt\n')
+        file.write('//Programmer: George Mausshardt\n')
         file.write('//File: %s\n' % self._fileName)
         file.write('//Generated on: %s\n\n' % str(datetime.datetime.now().strftime("%A %B %d, %Y")))
         for currInclude in self._includes:

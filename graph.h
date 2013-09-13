@@ -8,6 +8,10 @@
 #define GRAPH_H
 
 #include "templates.h"
+#include "vertex.h"
+
+using std::endl;
+using std::cout;
 
 template <class T>
 class Graph
@@ -22,14 +26,25 @@ class Graph
 	  template <class U>
 	  friend ostream& operator<<(ostream& out, const Graph<U>& calling_graph)
 	  {
-		  out << calling_graph.m_data << endl;
+		  for(int i = 0; i < calling_graph.m_size; i++)
+		  {
+			  out << calling_graph.m_data[i].id << ": " << endl;//calling_graph.m_data[i].connections << endl;
+		  }
+		  return out;
 	  }
 
-	  clear();
+	  void remove(long index);
+	  void insert(long id, List<long> connections);
+	  void attach_directed(long id, long end_id);
+	  void attach_undirected(long id, long end_id); // Attches/Detaches directed and undirected graph vertices
+	  void detach(long id, long end_id);
+	  void detach_both(long id, long end_id);
+	  
+	  void clear();
 
   private:
 	  nsize m_size;
-	  List<List<Connection> > m_data;
+	  List<Vertex> m_data;
 	  
 	  void copy(const Graph<T> input_graph);
 };
